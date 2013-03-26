@@ -1,0 +1,71 @@
+name: Town Index
+main: src.townindex.TI_Main
+author: KipperOrigin
+version: 0.2
+
+commands:
+  ti:
+    description: This is Town Index's main command.
+    usage: /ti <add|remove>
+    aliases: [town, townindex]
+
+permissions:
+  ti.all:
+    description: All Town Index permissions.
+    default: op
+    children:
+      ti.main: true
+      ti.admin.*: true
+  ti.main:
+    description: All non-admin Town Index permissions.
+    default: op
+    children:
+      ti.list: true
+      ti.help: true
+      ti.info: true
+      ti.edit.*: true
+  ti.help:
+    description: Town Index Help
+    default: op
+  ti.list:
+    description: Town Index list.
+    default: op
+  ti.info:
+    description: Town Index info.
+    default: op
+  ti.edit.*:
+    description: All Town Index edit permissions.
+    default: op
+    children:
+      ti.edit.vmayor: true
+      ti.edit.location: true
+      ti.edit.plots: true
+      ti.edit.wing: true
+  ti.edit.vmayor:
+    description: Edits a towns vice mayor.
+    default: op
+  ti.edit.location:
+    description: Edits a towns location.
+    default: op
+  ti.edit.plots:
+    description: Edits a towns plots status.
+    default: op
+  ti.edit.wing:
+    description: Edits a towns wing location.
+    default: op
+  ti.admin.*:
+    description: All Town Index Admin permissions.
+    default: op
+    children:
+      ti.admin.edit: true
+      ti.admin.add: true
+      ti.admin.remove: true
+  ti.admin.edit:
+    description: Editing bypass.
+    default: op
+  ti.admin.add:
+    description: Adds a town.
+    default: op
+  ti.admin.remove:
+    description: Removes a town.
+    default: op
