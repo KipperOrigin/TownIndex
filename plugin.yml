@@ -11,10 +11,15 @@ commands:
 
 permissions:
   ti.basic.*:
-  
-  ti.admin.*:
+    description: Town Index Basics.
+    default: op
+    children:
+      ti.basic.help: true
+      ti.basic.list: true
+      ti.basic.info: true
+      ti.basic.edit.*: true
   ti.basic.help:
-    description: Town Index Help
+    description: Town Index Help.
     default: op
   ti.basic.list:
     description: Town Index list.
@@ -53,6 +58,7 @@ permissions:
       ti.admin.edit: true
       ti.admin.add: true
       ti.admin.remove: true
+      ti.admin.help: true
   ti.admin.edit:
     description: Editing bypass, and access to more editing.
     default: op
