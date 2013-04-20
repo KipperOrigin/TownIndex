@@ -1,4 +1,4 @@
-name: Town Index
+name: TownIndex
 main: src.townindex.TI_Main
 author: KipperOrigin
 version: 0.2
@@ -10,48 +10,41 @@ commands:
     aliases: [town, townindex]
 
 permissions:
-  ti.all:
-    description: All Town Index permissions.
-    default: op
-    children:
-      ti.main: true
-      ti.admin.*: true
-  ti.main:
-    description: All non-admin Town Index permissions.
-    default: op
-    children:
-      ti.list: true
-      ti.help: true
-      ti.info: true
-      ti.edit.*: true
-  ti.help:
+  ti.basic.*:
+  
+  ti.admin.*:
+  ti.basic.help:
     description: Town Index Help
     default: op
-  ti.list:
+  ti.basic.list:
     description: Town Index list.
     default: op
-  ti.info:
+  ti.basic.info:
     description: Town Index info.
     default: op
-  ti.edit.*:
+  ti.basic.edit.*:
     description: All Town Index edit permissions.
     default: op
     children:
-      ti.edit.vmayor: true
-      ti.edit.location: true
-      ti.edit.plots: true
-      ti.edit.wing: true
-  ti.edit.vmayor:
+      ti.basic.edit.vmayor: true
+      ti.basic.edit.location: true
+      ti.basic.edit.plots: true
+      ti.basic.edit.wing: true
+      ti.basic.edit.motd: true
+  ti.basic.edit.vmayor:
     description: Edits a towns vice mayor.
     default: op
-  ti.edit.location:
+  ti.basic.edit.location:
     description: Edits a towns location.
     default: op
-  ti.edit.plots:
+  ti.basic.edit.plots:
     description: Edits a towns plots status.
     default: op
-  ti.edit.wing:
+  ti.basic.edit.wing:
     description: Edits a towns wing location.
+    default: op
+  ti.basic.edit.motd:
+    description: Edits town Motd.
     default: op
   ti.admin.*:
     description: All Town Index Admin permissions.
@@ -61,11 +54,14 @@ permissions:
       ti.admin.add: true
       ti.admin.remove: true
   ti.admin.edit:
-    description: Editing bypass.
+    description: Editing bypass, and access to more editing.
     default: op
   ti.admin.add:
     description: Adds a town.
     default: op
   ti.admin.remove:
     description: Removes a town.
+    default: op
+  ti.admin.help:
+    description: Admin help.
     default: op
