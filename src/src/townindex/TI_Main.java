@@ -270,10 +270,24 @@ public class TI_Main extends JavaPlugin {
 								if (location != null)
 									sender.sendMessage(color("&6- " + "Location: &a X- " + location.getBlockX() + ", Y- " + location.getBlockY() + ", Z- " + location.getBlockZ()));
 								else
-									sender.sendMessage(color("&6- " + "Location: &anull"));
+									sender.sendMessage(color("&6- " + "Location: &aN/A"));
 								sender.sendMessage(color("&6- " + "Plots Available: &a" + data.getPAvail()));
 								sender.sendMessage(color("&6- " + "MOTD: &a" + data.getMOTD()));
-								sender.sendMessage(color("&6- " + "Rating: &a" + data.getRating() + "%"));
+								sender.sendMessage(color("&6- " + "Score: &a" + data.getRating() + "%"));
+								String score;
+
+								if ((data.getRating() < 70) || (data.getRating() > 100))
+									score = "N/A";
+								else if ((data.getRating() >= 70) && (data.getRating() <= 79))
+									score = "Standard";
+								else if ((data.getRating() >= 80) && (data.getRating() <= 89))
+									score = "Quality";
+								else if ((data.getRating() >= 90) && (data.getRating() <= 100))
+									score = "Premium";
+								else
+									score = "N/A";
+
+								sender.sendMessage(color("&6- " + "Rating: &a" + score));
 							}
 						}
 					} else {
@@ -316,11 +330,11 @@ public class TI_Main extends JavaPlugin {
 							sender.sendMessage(color(tipermission));
 							return true;
 						}
-						if ((args[3].equalsIgnoreCase(wing1)) || (args[3].equalsIgnoreCase(wing2)) || (args[3].equalsIgnoreCase(wing2)) || (args[3].equalsIgnoreCase(wing4))) {
+						if ((args[3].equalsIgnoreCase(wing1)) || (args[3].equalsIgnoreCase(wing2)) || (args[3].equalsIgnoreCase(wing2)) || (args[3].equalsIgnoreCase(wing4)) || (args[3].equalsIgnoreCase("N/A"))) {
 							sender.sendMessage(tiedit);
 							data.setWing(args[3]);
 						} else {
-							sender.sendMessage(color("&4Argument needs to be: " + wing1 + ", " + wing2 + ", " + wing3 + ", or " + wing4 + "."));
+							sender.sendMessage(color("&4Argument needs to be: " + wing1 + ", " + wing2 + ", " + wing3 + ", or " + wing4 + "," + "N/A."));
 							return true;
 						}
 					} else {
@@ -398,7 +412,7 @@ public class TI_Main extends JavaPlugin {
 						sender.sendMessage(color("&cRating must be a number!"));
 						return true;
 					}
-					if ((Double.parseDouble(args[3]) > 100)) {
+					if ((Double.parseDouble(args[3]) > 100) || (Double.parseDouble(args[3]) < 0)) {
 						sender.sendMessage(color("&cNumber must be below 100!"));
 						return true;
 					}
