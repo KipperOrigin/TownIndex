@@ -1,6 +1,8 @@
 package src.townindex;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
@@ -19,6 +21,7 @@ public class TI_Data implements ConfigurationSerializable {
 	private String pavail;
 	private String motd;
 	private double rating;
+	private List<String> players = new ArrayList<String>();
 
 	public TI_Data(String tname) {
 		this.tname = tname;
@@ -96,6 +99,18 @@ public class TI_Data implements ConfigurationSerializable {
 		this.rating = rating;
 	}
 
+	public void addPlayer(String player) {
+		this.players.add(player);
+	}
+
+	public void removePlayer(String player) {
+		this.players.remove(player);
+	}
+
+	public List<String> getPlayers() {
+		return players;
+	}
+
 	@Override
 	public Map<String, Object> serialize() {
 		Map<String, Object> tmap = new LinkedHashMap<String, Object>();
@@ -109,10 +124,12 @@ public class TI_Data implements ConfigurationSerializable {
 		tmap.put("pavail", pavail);
 		tmap.put("motd", motd);
 		tmap.put("rating", rating);
+		tmap.put("players", players);
 
 		return tmap;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static TI_Data deserialize(Map<String, Object> tmap) {
 		String tstatus = "";
 		String mayor = "";
@@ -122,6 +139,7 @@ public class TI_Data implements ConfigurationSerializable {
 		String pavail = "";
 		String motd = "";
 		double rating = 0;
+		List<String> players = new ArrayList<String>();
 
 		if (!tmap.containsKey("tname"))
 			return null;
@@ -143,6 +161,8 @@ public class TI_Data implements ConfigurationSerializable {
 			motd = tmap.get("motd").toString();
 		if (tmap.get("rating") != null)
 			rating = (double) tmap.get("rating");
+		if (tmap.get("players") != null)
+			players = (List<String>) tmap.get("players");
 
 		TI_Data tmapfinish = new TI_Data(tname);
 		tmapfinish.tname = tname;
@@ -154,6 +174,7 @@ public class TI_Data implements ConfigurationSerializable {
 		tmapfinish.pavail = pavail;
 		tmapfinish.motd = motd;
 		tmapfinish.rating = rating;
+		tmapfinish.players = players;
 		return tmapfinish;
 	}
 }

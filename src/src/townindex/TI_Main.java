@@ -180,8 +180,16 @@ public class TI_Main extends JavaPlugin {
 									break;
 								if (i == townnamessize)
 									break;
-								sender.sendMessage(color("&6" + sidenum + ": &2" + townnames.get(i)));
+								TI_Data data = tlist.get(townnames.get(i));
+								if (data == null) {
+									continue;
+								}
+								sender.sendMessage(color("&6" + sidenum + ": &2" + townnames.get(i) + "  &6Status: &a" + data.getTStatus() + "  &6Mayor: &a" + data.getMayor()));
 							}
+							int pages = (townnames.size() / 10);
+							if (townnames.size() % 10 != 0)
+								pages = pages + 1;
+							sender.sendMessage(color("&6(Page &a" + listnum + "&6 of &a" + pages + "&6)"));
 						} catch (NumberFormatException e) {
 							sender.sendMessage(color("&4Argument must be a whole number!"));
 						}
@@ -240,12 +248,18 @@ public class TI_Main extends JavaPlugin {
 								sender.sendMessage(color(listname));
 								for (int i = startfrom; i < startfrom + 10; i++) {
 									int sidenum = (i + 1);
-									if (i > townnames.size())
+									if (i >= townnamessize)
 										break;
-									sender.sendMessage(color("&6" + sidenum + ": &2" + townnames.get(i)));
-									if (i == townnamessize)
-										break;
+									TI_Data data = tlist.get(townnames.get(i));
+									if (data == null) {
+										continue;
+									}
+									sender.sendMessage(color("&6" + sidenum + ": &2" + townnames.get(i) + "&6Data: &a" + data.getTStatus() + "&6Mayor: &a" + data.getMayor()));
 								}
+								int pages = (townnames.size() / 10);
+								if (townnames.size() % 10 != 0)
+									pages = pages + 1;
+								sender.sendMessage(color("&6(Page &a" + listnum + "&6 of &a" + pages + "&6)"));
 							}
 						} catch (NumberFormatException e) {
 							sender.sendMessage(color("&4Argument must be a whole number!"));

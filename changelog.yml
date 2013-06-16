@@ -7,3 +7,8 @@ Version 0.2:
 Version 0.3:
 - Towns store more Data
 - Help more descriptive
+
+Version 0.4:
+- Fixed bug in lists for throwing an error at the end of a list
+- Added Page numbers to lists
+- Added Mayor and Town Status to lists

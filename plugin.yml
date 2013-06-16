@@ -1,7 +1,7 @@
 name: TownIndex
 main: src.townindex.TI_Main
-author: KipperOrigin
-version: 0.2
+author: [KipperOrigin, GoalieGuy6]
+version: 0.4
 
 commands:
   ti:
